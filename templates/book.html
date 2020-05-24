@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="container-foto">
+        <div class="topnav">
+            <a class="active" href="{{ url_for('logout') }}">Log Out</a>
+            <a class="active2" href="{{ url_for('searchMore') }}">Home</a>
+            <a>Hi! {{ user.username }}</a>
+        </div>
+        
+        <div class="row h-100 justify-content-center">
+            <div class="col-6 justify-content-center">
+                <div class="container-details rounded">
+                    <h1>Book: {{ book.title }}</h1>
+                    <h5>Isbn: {{ book.isbn }}</h5>
+                    <h5>Author:{{ book.author }}</h5>
+                    <h5>Year:{{ book.year }}</h5>
+                </div>
+                <div class="rating">
+                    <p>Average Rating: {{ statistics.average_rating }}</p>
+                    <p>Number of Ratings: {{ statistics.work_ratings_count }}</p>
+                </div>
+            </div>
+            
+            <div class="col-6 justify-content-center">
+                <form class="container-book" action="/review/{{book.id}}" method="POST">
+                    <div class="titulo-review1">
+                        <select id="rating" name="rating" required>
+                            <option disabled selected value>Rate the book</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="titulo-review2">
+                        <textarea class="input-form" name="review" id="review" class="materialize-textarea" placeholder="Leave your review"required></textarea>
+                    <button class="button rounded" type="submit">Send
+                    </button>
+                    </div>
+                </form>
+
+                <div class="titulo-review3">
+                    <h3 class="text-center">Readers Review</h3>
+                    <ul class="container-ul2">
+                        {% for review in reviews %}
+                        <li class="container-review">
+                            <blockquote class="blockquote text-left">
+                                <p class="mb-0">{{ review.review }}</p>
+                                <footer class="blockquote-footer">Rated {{ review.rating }} of 5 by <cite title="Source Title">{{ review.username }}</cite></footer>
+                              </blockquote>
+                        </li>
+                        {% else %}
+                        <p>Be the first to review this book!</p>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

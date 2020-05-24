@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+    <div class="container-foto">
+        <div class="topnav">
+            <a class="active" href="{{ url_for('logout') }}">Log Out</a>
+            <a>Hi! {{ user.username }}</a>
+        </div>
+        
+        <div class="row h-100 align-items-center">
+            <div class="col-lg-6 rounded">
+                <form action="{{ url_for('search') }}" method="POST">
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                                 <input type="radio" name="column" id="radio-choice-1" value="author" checked="checked" />
+                                     <label for="radio-choice-1">Author</label>
+                        
+                                     <input type="radio" name="column" id="radio-choice-2" value="title"  />
+                                     <label for="radio-choice-2">Book Title</label>
+                        
+                                     <input type="radio" name="column" id="radio-choice-3" value="isbn"  />
+                                     <label for="radio-choice-3">ISBN</label>
+                        </fieldset>
+                    </div>
+                    <div><input class="input-form" type="text" name="value"></div>
+                    <div>
+                        <button class="button" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="container-foto">
+        <div class="topnav">
+            <a class="active" href="{{ url_for('logout') }}">Log Out</a>
+            <a class="active2" href="{{ url_for('searchMore') }}">Home</a>
+            <a>Hi! {{ user.username }}</a>
+        </div>
+        <div class="container-details rounded">
+            {% if success %}
+                <p>Your review has been posted!</p>
+                <p><a href="/book/{{book_id}}">Go back!</a></p>
+            {% else %}
+                <p>You already reviewed this book!</p>
+                <p><a href="/book/{{book_id}}">Go back!</a></p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

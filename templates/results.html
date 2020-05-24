@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="container-foto">
+        <div class="topnav">
+            <a class="active" href="{{ url_for('logout') }}">Log Out</a>
+            <a>Hi! {{ user.username }}</a>
+            <a class="active2" href="{{ url_for('searchMore') }}">Home</a>
+        </div>
+        
+        <div class="row h-100 justify-content-center">
+            <div class="col-md-auto justify-content-center">
+                <div class="container-ul justify-content-center">
+                    <ul>
+                        {% for book in books %}
+                        <a href="/book/{{book.id}}">
+                        <li class="results justify-content-center">
+                            <span>{{ book.title }}</span>
+                            <p>Authored by {{ book.author }} in {{ book.year }}</p>
+                        </li>
+                        </a>
+                        {% else %}
+                        no book found
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

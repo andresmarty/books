@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+        <div class="container-foto">
+            <div class="container-form rounded">
+                <h1>Books & More</h1>
+                <form action="{{ url_for('login') }}" method="post">
+                    <ul>
+                        <li><input class="input-form" type="text" name="username" placeholder="Enter Your Name"></li>
+                        <li><input class="input-form" type="password" name="password" placeholder="Password"></li>
+                        <li><button class="button rounded" type="submit">Log In</button></li>
+                    </ul>
+                        <a href="{{ url_for('registration') }}"><p>New User? Register Here</p></a>
+                        <p class="center">{{ message }}</p>
+                </form>
+            </div>
+        </div>
+{% endblock %}
